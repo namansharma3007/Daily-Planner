@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+::-webkit-scrollbar{
+    @apply w-2 bg-pink-50 border-none;
+}
+::-webkit-scrollbar:hover{
+    @apply bg-pink-100;
+}
+
+::-webkit-scrollbar-thumb{
+    @apply bg-purple-200 rounded-full;
+}
+::-webkit-scrollbar-thumb:hover{
+    @apply bg-purple-500; 
+}
