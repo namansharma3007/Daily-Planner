@@ -126,7 +126,7 @@ const TaskList: React.FC<TaskListProps> = ({
         />
 
         {/* Tasks */}
-        <div className="relative mx-2">
+        <div className="relative ml-2 mr-1">
           {taskGroups.map((group, groupIndex) => (
             <div 
               key={groupIndex} 
@@ -144,7 +144,7 @@ const TaskList: React.FC<TaskListProps> = ({
                 return (
                   <div
                     key={task.id}
-                    className="absolute left-0 right-1 rounded-lg shadow-sm transition-all duration-200 hover:shadow-md group"
+                    className="absolute left-0 right-0 rounded-lg shadow-sm transition-all duration-200 hover:shadow-md group"
                     style={{
                       top: `${top}px`,
                       height: `${height}px`,
