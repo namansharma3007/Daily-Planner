@@ -91,7 +91,7 @@ const TaskList: React.FC<TaskListProps> = ({
   return (
     <div className="relative min-h-[2400px]">
       {/* Time labels */}
-      <div className="absolute left-0 top-0 bottom-0 w-14 border-r border-gray-200">
+      <div className="absolute left-0 top-0 bottom-0 w-8 border-r border-gray-200">
         {timeLabels.map((time, index) => (
           <div
             key={`time-${index}`}
@@ -104,7 +104,7 @@ const TaskList: React.FC<TaskListProps> = ({
       </div>
 
       {/* Timeline grid */}
-      <div className="absolute left-14 right-0 top-0 bottom-0">
+      <div className="absolute left-8 right-0 top-0 bottom-0">
         {timeLabels.map((_, index) => (
           <div
             key={`grid-${index}`}

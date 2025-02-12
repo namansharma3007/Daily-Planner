@@ -83,7 +83,7 @@ function App() {
             </div>
 
             {/* Main Content */}
-            <div className="bg-white rounded-2xl shadow-xl p-6">
+            <div className="bg-white rounded-2xl shadow-xl py-6 px-4">
               {hasPlans ? (
                 selectedDate ? (
                   <TaskList
