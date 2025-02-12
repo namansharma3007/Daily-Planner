@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { X } from 'lucide-react';
+import React, { useState } from "react";
+import { X, Plus, Minus } from "lucide-react";
 
 interface SettingsModalProps {
   isOpen: boolean;
@@ -12,7 +12,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
   isOpen,
   onClose,
   startHour,
-  onUpdateSettings
+  onUpdateSettings,
 }) => {
   const [tempStartHour, setTempStartHour] = useState(startHour);
 
@@ -22,11 +22,14 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
     onClose();
   };
 
-  const handleHourChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseInt(e.target.value, 10);
-    if (!isNaN(value) && value >= 0 && value <= 23) {
-      setTempStartHour(value);
-    }
+  const handleHourChange = (increment: number) => {
+    setTempStartHour((prev) => {
+      const newValue = prev + increment;
+      if (newValue >= 0 && newValue <= 23) {
+        return newValue;
+      }
+      return prev;
+    });
   };
 
   if (!isOpen) return null;
@@ -36,7 +39,10 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
       <div className="bg-white rounded-lg p-6 w-full max-w-md">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-bold text-gray-800">Settings</h2>
-          <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
+          <button
+            onClick={onClose}
+            className="text-gray-500 hover:text-gray-700"
+          >
             <X className="w-6 h-6" />
           </button>
         </div>
@@ -46,15 +52,25 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Day Start Hour (24-hour format)
             </label>
-            <input
-              type="number"
-              min="0"
-              max="23"
-              value={tempStartHour}
-              onChange={handleHourChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
-              required
-            />
+            <div className="flex items-center space-x-2 justify-center">
+              <button
+                type="button"
+                onClick={() => handleHourChange(-1)}
+                className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+              >
+                <Minus className="w-4 h-4" />
+              </button>
+              <span className="px-3 py-2 border border-gray-300 rounded-md">
+                {tempStartHour}
+              </span>
+              <button
+                type="button"
+                onClick={() => handleHourChange(1)}
+                className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+              >
+                <Plus className="w-4 h-4" />
+              </button>
+            </div>
             <p className="mt-1 text-sm text-gray-500">
               This will set when your day starts in the timeline view
             </p>
